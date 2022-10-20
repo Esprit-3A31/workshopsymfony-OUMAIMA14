@@ -42,4 +42,19 @@ class ClubController extends AbstractController
         //return new Response("réservation!");
         return $this->render("club/detail.html.twig");
     }
+
+    #[Route('/clubs', name: 'app_clubs')]
+    public function listClub(ClubRepository  $repository)
+    {
+        $clubs= $repository->findAll();
+        return $this->render("club/clubs.html.twig",
+            array('tabclubs'=>$clubs));
+    }
+
+
+
+
+
+
+
 }
