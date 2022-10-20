@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ClassroomRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClassroomRepository::class)]
@@ -15,16 +13,11 @@ class Classroom
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 14)]
+    #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity: Student::class)]
-    private Collection $students;
-
-    public function __construct()
-    {
-        $this->students = new ArrayCollection();
-    }
+    #[ORM\Column]
+   
 
     public function getId(): ?int
     {
@@ -43,37 +36,15 @@ class Classroom
         return $this;
     }
 
-    /**
-     * @return Collection<int, Student>
-     */
-    public function getStudents(): Collection
+    public function getNbr(): ?int
     {
-        return $this->students;
+        return $this->nbr;
     }
 
-    public function addStudent(Student $student): self
+    public function setNbr(int $nbrstudent): self
     {
-        if (!$this->students->contains($student)) {
-            $this->students->add($student);
-            $student->setClassroom($this);
-        }
+        $this->nbr = $nbr;
 
         return $this;
-    }
-
-    public function removeStudent(Student $student): self
-    {
-        if ($this->students->removeElement($student)) {
-            // set the owning side to null (unless already changed)
-            if ($student->getClassroom() === $this) {
-                $student->setClassroom(null);
-            }
-        }
-
-        return $this;
-    }
-    public function _toString()
-    {
-        return(string)$this->getName();
     }
 }
