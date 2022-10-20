@@ -22,19 +22,7 @@ class StudentController extends AbstractController
         ]);
     
     }
-    #[Route('/addstudent', name: 'add_student')]
-    public function addStudent(ManagerRegistry  $doctrine)
-    {
-        $student= new Student();
-        $student->setNce("123");
-        $student->setUsername("asmayari");
-        //$em= $this->getDoctrine()->getManager();
-        $em= $doctrine->getManager();
-        $em->persist($student);
-        $em->flush();
-        //return $this->redirectToRoute("")
-        return new Response("add student");
-    }
+    
     #[Route('/addStudentForm', name: 'addStudentForm')]
     public function addStudentForm(Request  $request,ManagerRegistry $doctrine)
     {

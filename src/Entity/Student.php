@@ -19,6 +19,14 @@ class Student
     #[ORM\Column(length: 10)]
     private ?string $Username = null;
 
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Classroom $classroom = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Classroom $classroometranger = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +52,30 @@ class Student
     public function setUsername(string $Username): self
     {
         $this->Username = $Username;
+
+        return $this;
+    }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->classroom;
+    }
+
+    public function setClassroom(?Classroom $classroom): self
+    {
+        $this->classroom = $classroom;
+
+        return $this;
+    }
+
+    public function getClassroometranger(): ?Classroom
+    {
+        return $this->classroometranger;
+    }
+
+    public function setClassroometranger(?Classroom $classroometranger): self
+    {
+        $this->classroometranger = $classroometranger;
 
         return $this;
     }

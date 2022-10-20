@@ -15,7 +15,7 @@ class ClubController extends AbstractController
             'controller_name' => 'ClubController',
         ]);
     }
-    #[Route('/formations', name: 'list_formation')]
+     #[Route('/formations', name: 'list_formation')]
     public function formations()
     {
         $v1= "3A31";
