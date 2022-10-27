@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Classroom;
+use App\Entity\ClassRoom;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Classroom>
+ * @extends ServiceEntityRepository<ClassRoom>
  *
- * @method Classroom|null find($id, $lockMode = null, $lockVersion = null)
- * @method Classroom|null findOneBy(array $criteria, array $orderBy = null)
- * @method Classroom[]    findAll()
- * @method Classroom[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ClassRoom|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ClassRoom|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ClassRoom[]    findAll()
+ * @method ClassRoom[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ClassroomRepository extends ServiceEntityRepository
+class ClassRoomRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Classroom::class);
+        parent::__construct($registry, ClassRoom::class);
     }
 
-    public function add(Classroom $entity, bool $flush = false): void
+    public function add(ClassRoom $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ClassroomRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Classroom $entity, bool $flush = false): void
+    public function remove(ClassRoom $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ClassroomRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Classroom[] Returns an array of Classroom objects
+//     * @return ClassRoom[] Returns an array of ClassRoom objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ClassroomRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Classroom
+//    public function findOneBySomeField($value): ?ClassRoom
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

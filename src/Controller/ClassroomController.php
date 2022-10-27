@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Classroom;
+use App\Entity\ClassRoom;
 use App\Form\AjoutType;
-use App\Repository\ClassroomRepository;
+use App\Repository\ClassRoomRepository;
 use App\Repository\ClubRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class ClassroomController extends AbstractController
 {
@@ -70,6 +71,7 @@ class ClassroomController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("addClassroomForm");
     }
+
 
 
 

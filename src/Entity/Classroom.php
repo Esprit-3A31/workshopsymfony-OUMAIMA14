@@ -2,22 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\ClassroomRepository;
+use App\Repository\ClassRoomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
-#[ORM\Entity(repositoryClass: ClassroomRepository::class)]
-class Classroom
+#[ORM\Entity(repositoryClass: ClassRoomRepository::class)]
+class ClassRoom
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 14)]
     private ?string $name = null;
 
     #[ORM\Column]
-   
+    private ?int $nbrstudent = null;
 
     public function getId(): ?int
     {
@@ -36,15 +37,48 @@ class Classroom
         return $this;
     }
 
-    public function getNbr(): ?int
+    public function getNbrstudent(): ?int
     {
-        return $this->nbr;
+        return $this->nbrstudent;
     }
 
-    public function setNbr(int $nbrstudent): self
+    public function setNbrstudent(int $nbrstudent): self
     {
-        $this->nbr = $nbr;
+        $this->nbrstudent = $nbrstudent;
 
         return $this;
     }
+       /**
+     * @return Collection<int, Student>
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): self
+    {
+        if (!$this->students->contains($student)) {
+            $this->students->add($student);
+            $student->setClassRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): self
+    {
+        if ($this->students->removeElement($student)) {
+            // set the owning side to null (unless already changed)
+            if ($student->getClassRoom() === $this) {
+                $student->setClassRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
 }

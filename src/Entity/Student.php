@@ -8,75 +8,67 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Id]
+    #[ORM\Column]
     private ?string $nce = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $Username = null;
-
-    #[ORM\ManyToOne(inversedBy: 'students')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Classroom $classroom = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Classroom $classroometranger = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
+    /**
+     * @return string|null
+     */
     public function getNce(): ?string
     {
         return $this->nce;
     }
 
-    public function setNce(string $nce): self
+    /**
+     * @param string|null $nce
+     */
+    public function setNce(?string $nce): void
     {
         $this->nce = $nce;
-
-        return $this;
     }
+
+    /**
+     * @return string|null
+     */
+
+
+    #[ORM\Column(length: 100)]
+    private ?string $username = null;
+
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    #[ORM\JoinColumn(onDelete:"CASCADE")]
+
+    private ?ClassRoom $classRoom = null;
+
+
+
+
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): self
+    public function setUsername(string $username): self
     {
-        $this->Username = $Username;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getClassroom(): ?Classroom
+    public function getClassRoom(): ?ClassRoom
     {
-        return $this->classroom;
+        return $this->classRoom;
     }
 
-    public function setClassroom(?Classroom $classroom): self
+    public function setClassRoom(?ClassRoom $classRoom): self
     {
-        $this->classroom = $classroom;
+        $this->classRoom = $classRoom;
 
         return $this;
     }
 
-    public function getClassroometranger(): ?Classroom
-    {
-        return $this->classroometranger;
-    }
-
-    public function setClassroometranger(?Classroom $classroometranger): self
-    {
-        $this->classroometranger = $classroometranger;
-
-        return $this;
-    }
 }
+
