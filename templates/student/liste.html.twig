@@ -1,10 +1,29 @@
-<a href="#">Add student</a>
 <h5>List Student</h5>
 {% for s in tabStudent %}
 	nce:
 	{{ s.nce }}
 	username:{{ s.username }}
-	<a href="#">Update</a>
-	<a href="#">Delete</a>
+	classroom:
+	{{ s.classroom.name }}
+
+	<br>
+{% endfor %}
+<h5>sort by nce</h5>
+{% for s in sortbynce %}
+	nce:
+	{{ s.nce }}
+	username:{{ s.username}}
+	classroom:
+	{{ s.classroom.name }}
+
+	<br>
+{% endfor %}
+<h5>Moyenne</h5>
+{% for t in topStudent %}
+	nce:
+	{{ t.nce }}
+	username:{{ s.username}}
+
+
 	<br>
 {% endfor %}

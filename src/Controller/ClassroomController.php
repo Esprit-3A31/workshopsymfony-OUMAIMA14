@@ -71,6 +71,16 @@ class ClassroomController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("addClassroomForm");
     }
+    
+    #[Route('/showClassroom/{id}', name: 'showClassroom')]
+    public function showClassroom(StudentRepository $repo,$id,ClassroomRepository $repository)
+    {
+        $classroom= $repository->find($id);
+        $students= $repo->getStudentsByClassroom($id);
+        return $this->render("student/showClassroom.html.twig",
+        array("classroom"=>$classroom,
+            "students"=>$students));
+    }
 
 
 
